@@ -1,7 +1,8 @@
 # PowerOptionsSysTray ( Power Tray )
 
-## The application shows all available power plans by the system using an icon that appears in the system tray
+## Description
+The application shows all available power plans and allows you to set one by using an icon that appears in the system tray
+It can also launch on windows startup
 
-## it can also launch on windows startup, it makes switching between power plans is as simple as a click instead of going to the control panel each time you want to change the power plan
-
-##This application is NOT for commercial use
+##Note
+This application is NOT for commercial use
