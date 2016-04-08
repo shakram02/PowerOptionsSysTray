@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PowerPlanHandler</name>
+    </assembly>
+    <members>
+        <member name="T:PowerPlanHandler.PowerOptionManager">
+            <summary>
+            Wrapper for managing power plans
+            </summary>
+        </member>
+        <member name="P:PowerPlanHandler.PowerOptionManager.PowerPlans">
+            <summary>
+            List of all available power plans
+            </summary>
+        </member>
+        <member name="M:PowerPlanHandler.PowerOptionManager.#ctor">
+            <summary>
+            Creates a power option manager which exposes the available power plans and can change the current power plan
+            </summary>
+        </member>
+        <member name="M:PowerPlanHandler.PowerOptionManager.GetPowerPlans">
+            <summary>
+            Gets all power plans available to system
+            </summary>
+            <returns>List of PowerPlan objects</returns>
+        </member>
+        <member name="M:PowerPlanHandler.PowerOptionManager.SetActivePowerPlan(PowerPlanHandler.PowerOptionManager.PowerPlan)">
+            <summary>
+            Sets a given PowerPlan to active
+            </summary>
+            <param name="plan">Plan to be used</param>
+        </member>
+        <member name="M:PowerPlanHandler.PowerOptionManager.SetActivePowerPlan(System.String)">
+            <summary>
+            Sets a given PowerPlan to active by its name ignoring character cases
+            </summary>
+            <param name="planName">Plan name</param>
+            <returns>Whether the operation was successful</returns>
+        </member>
+        <member name="M:PowerPlanHandler.PowerOptionManager.GetActivePlan">
+            <summary>
+            Returns the name of the active power plan
+            </summary>
+        </member>
+        <member name="M:PowerPlanHandler.PowerOptionManager.SetActive(System.Guid)">
+            <summary>
+            Activates the GUID that matches a power plan 
+            </summary>
+            <param name="powerSchemeId">Target power plan GUID</param>
+        </member>
+        <member name="T:PowerPlanHandler.PowerOptionManager.PowerPlan">
+            <summary>
+            Represents a power plan, access the plan by its name
+            </summary>
+        </member>
+        <member name="P:PowerPlanHandler.PowerOptionManager.PowerPlan.Name">
+            <summary>
+            Power plan's name as it's known to the system
+            </summary>
+        </member>
+        <member name="M:PowerPlanHandler.PowerOptionManager.PowerPlan.#ctor(System.String,System.Guid)">
+            <summary>
+            Creates a new instance of the power plan
+            </summary>
+            <param name="name"></param>
+            <param name="guid"></param>
+        </member>
+    </members>
+</doc>
