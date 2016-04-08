@@ -5,5 +5,6 @@
 
 2) It can also launch on windows startup
 
+it's very simple and easy to use, just right click on the tray icon and choose your power plan
 ##Note
 This application is NOT for commercial use
