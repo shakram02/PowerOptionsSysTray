@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace PowerOptionsSysTray
@@ -13,13 +14,24 @@ namespace PowerOptionsSysTray
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            using (PowerOptionsController powerOptions = new PowerOptionsController())
+            try
             {
-                //powerOptions.Display();
-                Application.Run();
-                powerOptions.Dispose();
+                using (PowerOptionsController powerOptions = new PowerOptionsController())
+                {
+                    //powerOptions.Display();
+                    Application.Run();
+                    powerOptions.Dispose();
+                }
             }
+            catch (Exception e)
+            {
+                StreamWriter writer = new StreamWriter(@"d:\log.txt");
+                writer.Write(e.Message);
+                writer.WriteLine();
+                writer.Write(e.StackTrace);
+            }
+
+
         }
     }
 }

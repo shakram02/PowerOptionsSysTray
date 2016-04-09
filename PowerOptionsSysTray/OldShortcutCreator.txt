@@ -1,0 +1,27 @@
+﻿ WshShell shell = new WshShell();
+
+                    //string[] stream = this.GetType().Assembly.GetManifestResourceNames();
+                    string[] resources = Assembly.GetExecutingAssembly().GetManifestResourceNames();
+                    Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resources[1]);
+
+                    string shortcutLocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
+                    FileStream iconStream = new FileStream(Path.Combine(shortcutLocation, "ShortcutIcon.ico"), FileMode.Create);
+                    for (int i = 0; i < stream.Length; i++)
+                    {
+                        iconStream.WriteByte((byte)stream.ReadByte());
+                    }
+
+                    IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutFileName);
+
+                    shortcut.Description = "Launches Power Tray application";   // The description of the shortcut
+                    shortcut.IconLocation = shortcutLocation;           // The icon of the shortcut
+                    shortcut.TargetPath = Application.ExecutablePath;                 // The path of the file that will launch when the shortcut is run
+                    shortcut.Save();                                    // Save the shortcut
+
+                    //string icon = fStream.Name;
+                    string icon = System.Windows.Forms.Application.StartupPath + "\\Iconr.ico";
+                    iconStream.Close();
+
+                    writer.WriteLine("IconFile=" + icon);
+                    writer.Flush();
