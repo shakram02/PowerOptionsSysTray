@@ -20,7 +20,7 @@ namespace PowerOptionsSysTray
             this.controller = controller;
             this.startupHandler = startupHandler;
             this.Popup += Menu_Popup;
-            
+
             PopulateContextMenu();
         }
 
@@ -89,17 +89,10 @@ namespace PowerOptionsSysTray
             // Click handler for startup option
             var menuStartup = (MenuItem)sender;
 
-            if (startupHandler.IsLaunchedOnStartup)
-            {
-                // If it already launches on startup, disable it
-                startupHandler.SetStartupValue(false);
-                menuStartup.Checked = false;
-            }
-            else
-            {
-                startupHandler.SetStartupValue(true);
-                menuStartup.Checked = true;
-            }
+            // Toggle the state of startup
+            startupHandler.SetStartup(!startupHandler.IsLaunchedOnStartup);
+            menuStartup.Checked = !startupHandler.IsLaunchedOnStartup;
+
         }
     }
 }

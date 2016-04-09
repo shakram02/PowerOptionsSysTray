@@ -9,6 +9,8 @@ namespace PowerOptionsSysTray
 {
     internal class StartUpHandler
     {
+
+
         //Get the Assembly Name of the application
         private static string appname = Assembly.GetExecutingAssembly().FullName.Remove(Assembly.GetExecutingAssembly().FullName.IndexOf(","));
 
@@ -23,22 +25,9 @@ namespace PowerOptionsSysTray
         /// <summary>
         /// Sets the application to startup with windows or not
         /// </summary>
-        public void SetStartupValue(bool launchOnStartup)
+        public void SetStartup(bool launchOnStartup)
         {
-            if (launchOnStartup)
-                CreateStartupLink();
-            else
-                RemoveStartupLink();
-        }
-
-        private void CreateStartupLink()
-        {
-            CreateShortcut(StartupPathName, true);
-        }
-
-        private void RemoveStartupLink()
-        {
-            CreateShortcut(StartupPathName, false);
+            CreateShortcut(StartupPathName, launchOnStartup);
         }
 
         /// <summary>
@@ -64,9 +53,9 @@ namespace PowerOptionsSysTray
                     myShortcut.Arguments = ""; //The arguments used when executing the exe
                     myShortcut.Save(); //Creates the shortcut
                 }
-                catch (Exception ex)
+                catch
                 {
-                    MessageBox.Show(ex.Message);
+                    throw;
                 }
             }
             else
