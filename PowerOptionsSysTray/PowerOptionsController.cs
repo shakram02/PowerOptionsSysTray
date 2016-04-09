@@ -15,6 +15,7 @@ namespace PowerOptionsSysTray
         public PowerOptionsController()
         {
             startupHandler = new StartUpHandler();
+
             powerManager = new PowerOptionManager();
             contextMenu = new PowerOptionsContextMenu(this, startupHandler);
             trayIcon = new PowerNotifyIcon(contextMenu);

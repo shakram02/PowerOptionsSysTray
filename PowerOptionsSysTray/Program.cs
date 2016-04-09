@@ -25,10 +25,13 @@ namespace PowerOptionsSysTray
             }
             catch (Exception e)
             {
-                StreamWriter writer = new StreamWriter(@"d:\log.txt");
+                string logFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Error Log.txt");
+                StreamWriter writer = new StreamWriter(logFilePath);
                 writer.Write(e.Message);
                 writer.WriteLine();
                 writer.Write(e.StackTrace);
+                writer.Close();
+                MessageBox.Show("An error occured, check:" + logFilePath);
             }
 
 
