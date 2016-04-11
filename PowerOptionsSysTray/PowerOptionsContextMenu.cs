@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace PowerOptionsSysTray
@@ -8,8 +10,9 @@ namespace PowerOptionsSysTray
     /// </summary>
     internal class PowerOptionsContextMenu : ContextMenu, IDisposable
     {
-        private PowerOptionsController controller;
-        StartUpHandler startupHandler;
+        private static PowerOptionsController controller;
+        private static StartUpHandler startupHandler;
+        private string activePlan;
 
         /// <summary>
         /// Creates a context menu for the tray
@@ -17,28 +20,20 @@ namespace PowerOptionsSysTray
         /// <param name="controller">Handles the available power options</param>
         public PowerOptionsContextMenu(PowerOptionsController controller, StartUpHandler startupHandler)
         {
-            this.controller = controller;
-            this.startupHandler = startupHandler;
+            PowerOptionsContextMenu.controller = controller;
+            PowerOptionsContextMenu.startupHandler = startupHandler;
             this.Popup += Menu_Popup;
 
             PopulateContextMenu();
         }
 
+        private void Menu_Popup(object sender, EventArgs e) => PopulateContextMenu();
 
-        private void Menu_Popup(object sender, EventArgs e)
-        {
-            PopulateContextMenu();
-        }
-
-        private void AddExit()
-        {
+        private void AddExit() =>
             this.MenuItems.Add(new MenuItem("Exit", (s, e) => Application.Exit()));
-        }
 
-        private void CheckIfStartup(MenuItem startUpMenuItem)
-        {
+        private void CheckIfStartup(MenuItem startUpMenuItem) =>
             startUpMenuItem.Checked = startupHandler.IsLaunchedOnStartup;
-        }
 
         /// <summary>
         /// Loads a fresh context menu with selected plan on top
@@ -48,7 +43,7 @@ namespace PowerOptionsSysTray
             // Make sure the menu is clean before recreating it
             this.MenuItems.Clear();
 
-            string activePlan = controller.GetActivePlan();
+            activePlan = controller.GetActivePowerPlan();
 
             foreach (string planName in controller.GetPlanNames())
             {
@@ -81,7 +76,7 @@ namespace PowerOptionsSysTray
 
             MenuItem clickedItem = (MenuItem)sender;
             clickedItem.Checked = true;
-            controller.SetPowerPlan(clickedItem.Text);
+            controller.SetActivePowerPlan(clickedItem.Text);
         }
 
         private void StartUpOnClick(object sender, EventArgs e)
@@ -92,7 +87,6 @@ namespace PowerOptionsSysTray
             // Toggle the state of startup
             startupHandler.SetStartup(!startupHandler.IsLaunchedOnStartup);
             menuStartup.Checked = !startupHandler.IsLaunchedOnStartup;
-
         }
     }
 }

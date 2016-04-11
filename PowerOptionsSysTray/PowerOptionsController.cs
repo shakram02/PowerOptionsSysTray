@@ -21,26 +21,15 @@ namespace PowerOptionsSysTray
             trayIcon = new PowerNotifyIcon(contextMenu);
         }
 
-        public void SetPowerPlan(string planName)
-        {
-            powerManager.SetActivePowerPlan(planName);
-        }
+        public void SetActivePowerPlan(string planName) => powerManager.SetActivePowerPlan(planName);
 
-        public void SetPowerPlan(PowerPlan plan)
-        {
-            powerManager.SetActivePowerPlan(plan);
-        }
-
-        public string GetActivePlan()
-        {
-            return powerManager.GetActivePlan();
-        }
+        public string GetActivePowerPlan() => powerManager.GetActivePlan();
 
         public List<string> GetPlanNames()
         {
             List<string> planNames = new List<string>(4);
 
-            foreach (var plan in powerManager.PowerPlans)
+            foreach (var plan in powerManager.GetPowerPlans())
                 planNames.Add(plan.Name);
 
             return planNames;

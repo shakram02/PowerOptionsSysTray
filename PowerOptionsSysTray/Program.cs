@@ -16,12 +16,11 @@ namespace PowerOptionsSysTray
             Application.SetCompatibleTextRenderingDefault(false);
             try
             {
-                using (PowerOptionsController powerOptions = new PowerOptionsController())
-                {
-                    //powerOptions.Display();
-                    Application.Run();
-                    powerOptions.Dispose();
-                }
+                PowerOptionsController powerOptions = new PowerOptionsController();
+                Application.Run();
+                powerOptions.Dispose();
+
+
             }
             catch (Exception e)
             {
@@ -31,10 +30,8 @@ namespace PowerOptionsSysTray
                 writer.WriteLine();
                 writer.Write(e.StackTrace);
                 writer.Close();
-                MessageBox.Show("An error occured, check:" + logFilePath);
+                MessageBox.Show($"An error occured:{Environment.NewLine}{e.Message}{Environment.NewLine}Please check:" + logFilePath);
             }
-
-
         }
     }
 }

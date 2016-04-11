@@ -9,14 +9,10 @@
             Wrapper for managing power plans
             </summary>
         </member>
-        <member name="P:PowerPlanHandler.PowerOptionManager.PowerPlans">
-            <summary>
-            List of all available power plans
-            </summary>
-        </member>
         <member name="M:PowerPlanHandler.PowerOptionManager.#ctor">
             <summary>
-            Creates a power option manager which exposes the available power plans and can change the current power plan
+            Creates a power option manager which exposes the available power plans and can change the
+            current power plan
             </summary>
         </member>
         <member name="M:PowerPlanHandler.PowerOptionManager.GetPowerPlans">
@@ -45,7 +41,7 @@
         </member>
         <member name="M:PowerPlanHandler.PowerOptionManager.SetActive(System.Guid)">
             <summary>
-            Activates the GUID that matches a power plan 
+            Activates the GUID that matches a power plan
             </summary>
             <param name="powerSchemeId">Target power plan GUID</param>
         </member>

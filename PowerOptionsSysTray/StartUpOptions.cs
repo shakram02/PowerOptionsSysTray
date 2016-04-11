@@ -7,8 +7,6 @@ namespace PowerOptionsSysTray
 {
     internal class StartUpHandler
     {
-
-
         //Get the Assembly Name of the application
         private static string appname = Assembly.GetExecutingAssembly().FullName.Remove(Assembly.GetExecutingAssembly().FullName.IndexOf(","));
 
@@ -34,7 +32,7 @@ namespace PowerOptionsSysTray
         /// <param name="shortcutPathName">
         /// The path where the shortcut is to be created or removed from including the (.lnk) extension.
         /// </param>
-        /// <param name="create">True to create a shortcut or False to remove the shortcut.</param>
+        /// <param name="create">          True to create a shortcut or False to remove the shortcut.</param>
         private void CreateShortcut(string shortcutPathName, bool create)
         {
             /// Source https://code.msdn.microsoft.com/windowsdesktop/Create-a-shortcut-for-your-ad3d9cb3
