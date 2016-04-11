@@ -15,7 +15,7 @@ namespace PowerOptionsSysTray
         {
             notificationIcon = new NotifyIcon();
             notificationIcon.Icon = Resources.Icon;
-            notificationIcon.Text = "Power Options";
+            notificationIcon.Text = "Power Tray";
 
             notificationIcon.ContextMenu = powerContextMenu;
             notificationIcon.Visible = true;
