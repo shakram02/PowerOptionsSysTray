@@ -1,3 +1,4 @@
+![alt tag](https://github.com/shakram02/PowerOptionsSysTray/blob/master/PowerOptionsSysTray/Resources/Icon.ico)
 # PowerOptionsSysTray ( Power Tray ) 
 
 ## Description
@@ -8,4 +9,3 @@
 it's very simple and easy to use, just right click on the tray icon and choose your power plan
 Note: This application is NOT for commercial use
 
-![alt tag](https://github.com/shakram02/PowerOptionsSysTray/blob/master/PowerOptionsSysTray/Resources/Icon.ico)
