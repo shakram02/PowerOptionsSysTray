@@ -66,6 +66,69 @@ namespace PowerOptionsSysTray
 
             CheckIfStartup(startUpMenuItem);
             AddExit();
+
+
+            this.MenuItems.Add("-");
+            this.MenuItems.Add(GeneratePowerData());
+
+
+        }
+
+        private MenuItem GeneratePowerData()
+        {
+            string pluggedStatus, powerDescription;
+
+
+            MenuItem powerDataMenuItem = new MenuItem();
+            powerDataMenuItem.Enabled = false;
+            float batteryPercentage = SystemInformation.PowerStatus.BatteryLifePercent;
+
+            BatteryChargeStatus batteryStatus = SystemInformation.PowerStatus.BatteryChargeStatus;
+
+            if (batteryStatus == BatteryChargeStatus.NoSystemBattery)
+            {
+                powerDescription = "No battery detected";
+                powerDataMenuItem.Text = powerDescription;
+                return powerDataMenuItem;
+            }
+
+            PowerLineStatus powerLineStatus = SystemInformation.PowerStatus.PowerLineStatus;
+            pluggedStatus = SystemInformation.PowerStatus.PowerLineStatus == PowerLineStatus.Online ? "Plugged in" : "Unplugged";
+
+            // Discharging, time to battery die
+            if (powerLineStatus == PowerLineStatus.Offline)
+            {
+                powerDescription = GenerateBatteryOfflineData(batteryPercentage);
+            }
+            else
+            {
+                int secondsToFullCharge = SystemInformation.PowerStatus.BatteryFullLifetime;
+                powerDescription = $"{batteryPercentage * 100}% - {pluggedStatus}";
+            }
+            powerDataMenuItem.Text = powerDescription;
+
+            return powerDataMenuItem;
+        }
+
+        private string GenerateBatteryOfflineData(float batteryPercentage)
+        {
+            TimeSpan timeRemaining;
+            int secondsRemaining = SystemInformation.PowerStatus.BatteryLifeRemaining; // Calculated after a while
+            if (secondsRemaining != -1)
+            {
+                timeRemaining = TimeSpan.FromSeconds(secondsRemaining);
+
+                int remainingHours = timeRemaining.Hours;
+
+                // Don't display hours if it's equal 0
+                if (remainingHours == 0)
+                    return $"{batteryPercentage * 100}% {timeRemaining.Minutes} Minutes - Unplugged";
+                else
+                    return $"{batteryPercentage * 100}% {timeRemaining.Hours} Hours {timeRemaining.Minutes} Minutes - Unplugged";
+
+            }
+            else
+                return $"{batteryPercentage * 100}% - Unplugged";
         }
 
         private void ItemOnClick(object sender, EventArgs e)

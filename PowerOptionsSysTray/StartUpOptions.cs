@@ -1,5 +1,7 @@
 ﻿using IWshRuntimeLibrary;
+using Microsoft.Win32;
 using System;
+using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -10,20 +12,35 @@ namespace PowerOptionsSysTray
         //Get the Assembly Name of the application
         private static string appname = Assembly.GetExecutingAssembly().FullName.Remove(Assembly.GetExecutingAssembly().FullName.IndexOf(","));
 
+        // The path to the key where Windows looks for startup applications
+        private static RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+
+        private static string applicationName = Assembly.GetExecutingAssembly().GetName().Name;
+
         //Adds the applications AssemblyName to the Startup folder path and adds the .lnk extension used for shortcuts
-        private string StartupPathName = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), appname + ".lnk");
+        private static string StartupPathName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), appname + ".lnk");
 
         /// <summary>
         /// Tells whether the application launches on startup or not
         /// </summary>
-        public bool IsLaunchedOnStartup => System.IO.File.Exists(StartupPathName);
+        public bool IsLaunchedOnStartup => rkApp.GetValue(applicationName) == null ? false : true;
 
         /// <summary>
         /// Sets the application to startup with windows or not
         /// </summary>
         public void SetStartup(bool launchOnStartup)
         {
-            CreateShortcut(StartupPathName, launchOnStartup);
+            //CreateShortcut(StartupPathName, launchOnStartup);
+            if (launchOnStartup && rkApp.GetValue(applicationName) == null)
+            {
+                // Add the value in the registry so that the application runs at startup
+                rkApp.SetValue(applicationName, Application.ExecutablePath);
+            }
+            else if (!launchOnStartup && rkApp.GetValue(applicationName) != null)
+            {
+                // Remove the value from the registry so that the application doesn't start
+                rkApp.DeleteValue(applicationName, false);
+            }
         }
 
         /// <summary>

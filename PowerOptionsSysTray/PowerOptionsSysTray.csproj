@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PowerOptionsSysTray</RootNamespace>
     <AssemblyName>Power Tray</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -24,11 +24,15 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
+    <SupportUrl>https://www.facebook.com/AHMxPs</SupportUrl>
     <TargetCulture>en</TargetCulture>
+    <ProductName>Power Tray</ProductName>
+    <PublisherName>Ahmed Hamdy</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.0.0.1</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
+    <ApplicationRevision>18</ApplicationRevision>
+    <ApplicationVersion>1.2.1.%2a</ApplicationVersion>
+    <UseApplicationTrust>true</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -55,14 +59,14 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>1C47C1465CA01C76D788B4306C33F3597669989D</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>8386B285C52D03F7259018DB6D68C45E4976F41D</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>PowerOptionsSysTray_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -74,6 +78,19 @@
     <StartupObject>PowerOptionsSysTray.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup />
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PowerPlanHandler, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -81,16 +98,16 @@
       <HintPath>.\PowerPlanHandler.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InstallationManager.cs" />
     <Compile Include="PowerOptionsController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,7 +126,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="PowerOptionsSysTray_TemporaryKey.pfx" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -148,7 +165,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="OldShortcutCreator.txt" />
-    <None Include="Resources\Icon.ico" />
+    <None Include="Resources\Icon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <PublishFile Include="OldShortcutCreator.txt">

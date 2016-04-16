@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following set of attributes.
 // Change these attribute values to modify the information associated with an assembly.
-[assembly: AssemblyTitle("PowerOptionsSysTray")]
-[assembly: AssemblyDescription("Changes the power plan using a system tray")]
+[assembly: AssemblyTitle("Power Tray")]
+[assembly: AssemblyDescription("Changes the power plan using a system tray icon by ahmedhamdyau@gmail.com")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ahmedhamdyau@gmail.com")]
-[assembly: AssemblyProduct("PowerOptionsSysTray")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCompany("Ahmed Hamdy")]
+[assembly: AssemblyProduct("Power Tray")]
+[assembly: AssemblyCopyright("ahmedhamdyau@gmail.com - Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

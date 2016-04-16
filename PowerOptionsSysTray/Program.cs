@@ -14,13 +14,14 @@ namespace PowerOptionsSysTray
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            // Do stuff here
+
             try
             {
                 PowerOptionsController powerOptions = new PowerOptionsController();
                 Application.Run();
                 powerOptions.Dispose();
-
-
             }
             catch (Exception e)
             {
