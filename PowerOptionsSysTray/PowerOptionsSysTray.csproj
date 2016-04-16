@@ -107,7 +107,6 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InstallationManager.cs" />
     <Compile Include="PowerOptionsController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -164,7 +163,6 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="OldShortcutCreator.txt" />
     <None Include="Resources\Icon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
